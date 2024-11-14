@@ -30,6 +30,7 @@ const App = () => {
 
   return (
     <div>
+      <SearchBar />
       {isError && <ErrorMessage />}
       <ImageGallery images={images} />
       {isLoading && <Loader />}
