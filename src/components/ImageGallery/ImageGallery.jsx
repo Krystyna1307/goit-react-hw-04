@@ -8,7 +8,9 @@ const ImageGallery = ({ images }) => {
       <ul className={s.list}>
         {images.map((image) => (
           <li className={s.item} key={image.id}>
-            <ImageCard image={image} />
+            <a href={image.urls.regular}>
+              <ImageCard image={image} />
+            </a>
           </li>
         ))}
       </ul>
