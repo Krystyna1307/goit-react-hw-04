@@ -3,6 +3,7 @@
   padding: 20px;
   /* position: fixed; */
   width: 100%;
+  text-align: center;
 }
 .form {
   display: flex;

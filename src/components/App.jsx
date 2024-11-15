@@ -14,14 +14,17 @@ const App = () => {
   const [query, setQuery] = useState(""); // пошук картинки
   const [page, setPage] = useState(1); // додаткові картинки
 
+  const [totalPage, setTotalPages] = useState(0);
+
   useEffect(() => {
     if (!query) return;
     const getData = async () => {
       try {
         setIsLoading(true);
         setIsError(false);
-        const { results } = await fetchImages(query, page);
+        const { results, total_pages } = await fetchImages(query, page);
 
+        setTotalPages(total_pages);
         setImages((prev) => [...prev, ...results]);
       } catch (error) {
         console.error(error);
@@ -32,7 +35,7 @@ const App = () => {
       }
     };
     getData();
-  }, [page, query]);
+  }, [query, page, totalPage]);
 
   const handleChangeQuery = (query) => {
     setImages([]);
@@ -51,15 +54,11 @@ const App = () => {
       <ImageGallery images={images} />
       {isLoading && <Loader />}
 
-      <LoadMoreBtn onClick={handleClickMore} />
+      {page < totalPage && images.length > 0 && (
+        <LoadMoreBtn onClick={handleClickMore} />
+      )}
     </div>
   );
 };
 
 export default App;
-
-// axios
-//       .get(
-//         `https://api.unsplash.com/search/photos?client_id=${ACCESS_KEY}&query=cats&page=3&per_page=12`
-//       )
-//       .then((res) => setImages(res.data.results));
