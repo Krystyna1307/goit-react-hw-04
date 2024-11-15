@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import { fetchImages } from "../services/api";
 import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
+import { useEffect, useState } from "react";
 
 const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [query, setQuery] = useState("nature");
+  const [query, setQuery] = useState("cat");
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -32,10 +32,12 @@ const App = () => {
   }, [page, query]);
 
   const handleChangeQuery = (query) => {
+    setImages([]);
     setQuery(query);
+    setPage(0);
   };
 
-  const handleClickMore = (page) => {
+  const handleClickMore = () => {
     setPage((prev) => prev + 1);
   };
 
