@@ -2,13 +2,22 @@ import React from "react";
 import s from "./SearchBar.module.css";
 import { Field, Form, Formik } from "formik";
 
-const SearchBar = () => {
+const SearchBar = ({ onSubmit }) => {
+  const initialValues = {
+    query: "",
+  };
+  const handleSubmit = (values) => {
+    console.log(values);
+    onSubmit(values.query);
+  };
+
   return (
-    <div>
+    <div className={s.container}>
       <header className={s.wrapper}>
-        <Formik>
-          <Form>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Form className={s.form}>
             <Field
+              name="query"
               type="text"
               autocomplete="off"
               autofocus

@@ -4,20 +4,23 @@ import ImageGallery from "./ImageGallery/ImageGallery";
 import { fetchImages } from "../services/api";
 import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 
 const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [query, setQuery] = useState("nature");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const getData = async () => {
       try {
         setIsLoading(true);
         setIsError(false);
-        const { results, page, per_page } = await fetchImages();
+        const { results } = await fetchImages(query, page);
 
-        setImages(results);
+        setImages((prev) => [...prev, ...results]);
       } catch (error) {
         console.error(error);
         setIsError(true);
@@ -26,14 +29,24 @@ const App = () => {
       }
     };
     getData();
-  }, []);
+  }, [page, query]);
+
+  const handleChangeQuery = (query) => {
+    setQuery(query);
+  };
+
+  const handleClickMore = (page) => {
+    setPage((prev) => prev + 1);
+  };
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar onSubmit={handleChangeQuery} />
       {isError && <ErrorMessage />}
       <ImageGallery images={images} />
       {isLoading && <Loader />}
+      <LoadMoreBtn onClick={handleClickMore} />
+      {page}
     </div>
   );
 };
