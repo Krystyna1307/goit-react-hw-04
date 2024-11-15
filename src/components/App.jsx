@@ -5,15 +5,17 @@ import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const App = () => {
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [query, setQuery] = useState("cat");
-  const [page, setPage] = useState(1);
+  const [images, setImages] = useState([]); //картинки
+  const [isLoading, setIsLoading] = useState(false); //спінер
+  const [isError, setIsError] = useState(false); // текст помилки
+  const [query, setQuery] = useState(""); // пошук картинки
+  const [page, setPage] = useState(1); // додаткові картинки
 
   useEffect(() => {
+    if (!query) return;
     const getData = async () => {
       try {
         setIsLoading(true);
@@ -26,6 +28,7 @@ const App = () => {
         setIsError(true);
       } finally {
         setIsLoading(false);
+        // toast.success("Successfully toasted!");
       }
     };
     getData();
@@ -34,7 +37,7 @@ const App = () => {
   const handleChangeQuery = (query) => {
     setImages([]);
     setQuery(query);
-    setPage(0);
+    setPage(1);
   };
 
   const handleClickMore = () => {
@@ -47,8 +50,8 @@ const App = () => {
       {isError && <ErrorMessage />}
       <ImageGallery images={images} />
       {isLoading && <Loader />}
+
       <LoadMoreBtn onClick={handleClickMore} />
-      {page}
     </div>
   );
 };
