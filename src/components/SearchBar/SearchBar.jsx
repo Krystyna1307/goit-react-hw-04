@@ -16,7 +16,10 @@ const SearchBar = ({ onSubmit }) => {
   return (
     <div className={s.container}>
       <header className={s.wrapper}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={s.form}>
+          <button type="submit" className={s.button}>
+            <span className={s.icon}></span>
+          </button>
           <input
             type="text"
             value={input}
@@ -24,8 +27,8 @@ const SearchBar = ({ onSubmit }) => {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
+            className={s.input}
           />
-          <button type="submit">Search</button>
         </form>
       </header>
     </div>
