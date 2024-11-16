@@ -54,6 +54,7 @@ const App = () => {
     setShowModal(true);
   };
   const closeModal = () => {
+    console.log("Закриття модального вікна"); // Перевірка
     setSelectedImage(null); // Очищаємо вибране зображення
     setShowModal(false); // Закриваємо модальне вікно
   };
@@ -62,7 +63,7 @@ const App = () => {
     <div>
       <SearchBar onSubmit={handleChangeQuery} />
       {isError && <ErrorMessage />}
-      <ImageGallery images={images} />
+      <ImageGallery images={images} onClick={openModal} />
       {isLoading && <Loader />}
 
       {page < totalPage && images.length > 0 && (

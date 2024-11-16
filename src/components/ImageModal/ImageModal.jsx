@@ -5,15 +5,19 @@ import s from "./ImageModal.module.css";
 ReactModal.setAppElement("#root");
 
 const ImageModal = ({ image, onClose }) => {
+  const handleBackdropClick = () => {
+    onClose();
+  };
+
   return (
-    <div>
+    <div onClick={handleBackdropClick} className={s.wrapper}>
       <ReactModal
         isOpen={!!image}
-        onRequestClose={onClose}
-        className={s.modal}
-        overlayClassName={s.overlay}
-        shouldCloseOnOverlayClick={true}
-        shouldCloseOnEsc={true}
+        onRequestClose={onClose} // Обробник закриття
+        className={s.modal} // Кастомний стиль
+        overlayClassName={s.overlay} // Стиль для фону
+        shouldCloseOnOverlayClick={true} // Закриття при кліку поза модальним вікном
+        shouldCloseOnEsc={true} // Закриття при натисканні ESC
       >
         <button onClick={onClose} className={s.closeButton}>
           Close
