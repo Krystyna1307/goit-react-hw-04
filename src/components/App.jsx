@@ -35,7 +35,7 @@ const App = () => {
       }
     };
     getData();
-  }, [query, page, totalPage]);
+  }, [query, page]);
 
   const handleChangeQuery = (query) => {
     setImages([]);
