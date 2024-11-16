@@ -50,9 +50,11 @@ const App = () => {
   };
 
   const openModal = (image) => {
+    console.log("Selected image:", image); // Перевірка
     setSelectedImage(image);
     setShowModal(true);
   };
+
   const closeModal = () => {
     console.log("Закриття модального вікна"); // Перевірка
     setSelectedImage(null); // Очищаємо вибране зображення

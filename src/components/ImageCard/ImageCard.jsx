@@ -8,7 +8,7 @@ const ImageCard = ({ image, onClick }) => {
         src={image.urls.small}
         alt={image.alt_description}
         className={s.image}
-        onClick={onClick}
+        onClick={() => onClick(image)} // Передача зображення
       />
     </div>
   );

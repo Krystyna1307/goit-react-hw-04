@@ -5,8 +5,10 @@ import s from "./ImageModal.module.css";
 ReactModal.setAppElement("#root");
 
 const ImageModal = ({ image, onClose }) => {
-  const handleBackdropClick = () => {
-    onClose();
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
   };
 
   return (
