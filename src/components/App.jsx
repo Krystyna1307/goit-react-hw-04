@@ -6,6 +6,7 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import ImageModal from "./ImageModal/ImageModal";
 
 const App = () => {
   const [images, setImages] = useState([]); //картинки
@@ -13,8 +14,10 @@ const App = () => {
   const [isError, setIsError] = useState(false); // текст помилки
   const [query, setQuery] = useState(""); // пошук картинки
   const [page, setPage] = useState(1); // додаткові картинки
-
   const [totalPage, setTotalPages] = useState(0);
+
+  const [showModal, setShowModal] = useState(false); //модальне вікно
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     if (!query) return;
@@ -31,7 +34,6 @@ const App = () => {
         setIsError(true);
       } finally {
         setIsLoading(false);
-        // toast.success("Successfully toasted!");
       }
     };
     getData();
@@ -47,6 +49,15 @@ const App = () => {
     setPage((prev) => prev + 1);
   };
 
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setSelectedImage(null); // Очищаємо вибране зображення
+    setShowModal(false); // Закриваємо модальне вікно
+  };
+
   return (
     <div>
       <SearchBar onSubmit={handleChangeQuery} />
@@ -57,6 +68,8 @@ const App = () => {
       {page < totalPage && images.length > 0 && (
         <LoadMoreBtn onClick={handleClickMore} />
       )}
+
+      {showModal && <ImageModal image={selectedImage} onClose={closeModal} />}
     </div>
   );
 };
