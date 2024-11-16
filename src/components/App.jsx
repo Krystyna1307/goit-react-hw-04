@@ -55,7 +55,6 @@ const App = () => {
   };
 
   const closeModal = () => {
-    console.log("Закриття модального вікна"); // Перевірка
     setSelectedImage(null); // Очищаємо вибране зображення
     setShowModal(false); // Закриваємо модальне вікно
   };
