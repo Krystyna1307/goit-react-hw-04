@@ -17,7 +17,3 @@ const ImageGallery = ({ images, onClick }) => {
 };
 
 export default ImageGallery;
-
-{
-  /* <a href={image.urls.regular}></a> */
-}
