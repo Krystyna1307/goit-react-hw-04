@@ -8,9 +8,7 @@ const ImageGallery = ({ images, onClick }) => {
       <ul className={s.list}>
         {images.map((image) => (
           <li className={s.item} key={image.id}>
-            <a href={image.urls.regular}>
-              <ImageCard image={image} onClick={onClick} />
-            </a>
+            <ImageCard image={image} onClick={() => onClick(image)} />
           </li>
         ))}
       </ul>
@@ -19,3 +17,7 @@ const ImageGallery = ({ images, onClick }) => {
 };
 
 export default ImageGallery;
+
+{
+  /* <a href={image.urls.regular}></a> */
+}

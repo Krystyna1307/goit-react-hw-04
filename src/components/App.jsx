@@ -50,7 +50,6 @@ const App = () => {
   };
 
   const openModal = (image) => {
-    console.log("Selected image:", image); // Перевірка
     setSelectedImage(image);
     setShowModal(true);
   };
