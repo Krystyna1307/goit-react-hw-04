@@ -8,7 +8,9 @@ const LoadMoreBtn = ({ onClick }) => {
 
   return (
     <div className={s.wrapper}>
-      <button onClick={handleClickLoadMore}>Load more</button>
+      <button onClick={handleClickLoadMore} className={s.button}>
+        Load more
+      </button>
     </div>
   );
 };

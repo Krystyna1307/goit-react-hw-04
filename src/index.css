@@ -1,8 +1,8 @@
-/* src/index.css */
-
 body {
   font-family: sans-serif;
   line-height: 1.5;
+  box-sizing: border-box;
+  background-color: aquamarine;
 }
 
 h1,

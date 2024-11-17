@@ -7,6 +7,7 @@ import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ImageModal from "./ImageModal/ImageModal";
+import Shadow from "./Shadow/Shadow";
 
 const App = () => {
   const [images, setImages] = useState([]); //картинки
@@ -55,7 +56,6 @@ const App = () => {
   };
 
   const closeModal = () => {
-    console.log("Закриття модального вікна"); // Перевірка
     setSelectedImage(null); // Очищаємо вибране зображення
     setShowModal(false); // Закриваємо модальне вікно
   };
@@ -66,11 +66,9 @@ const App = () => {
       {isError && <ErrorMessage />}
       <ImageGallery images={images} onClick={openModal} />
       {isLoading && <Loader />}
-
       {page < totalPage && images.length > 0 && (
         <LoadMoreBtn onClick={handleClickMore} />
       )}
-
       {showModal && <ImageModal image={selectedImage} onClose={closeModal} />}
     </div>
   );

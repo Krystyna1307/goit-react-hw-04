@@ -31,6 +31,7 @@ const SearchBar = ({ onSubmit }) => {
           />
         </form>
       </header>
+      <div className={s.shadow}></div>
     </div>
   );
 };

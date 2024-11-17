@@ -1,0 +1,13 @@
+.shadow {
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 150%;
+    height: 100px; /* Висота тіні */
+    background: linear-gradient(to bottom, #fff, black);
+
+    pointer-events: none;
+  }
+}
