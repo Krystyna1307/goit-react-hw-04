@@ -69,7 +69,7 @@ const App = () => {
   return (
     <div>
       <SearchBar onSubmit={handleChangeQuery} onTyping={handleTyping} />
-      {!isTyping && <Shadow />}
+      <Shadow hidden={isTyping} />
 
       {isError && <ErrorMessage />}
       <ImageGallery images={images} onClick={openModal} />

@@ -7,7 +7,7 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   z-index: 999; /* Щоб перекривати вміст */
   pointer-events: none; /* Щоб не блокувати кліки */
-  transition: opacity 0.3s ease; /* Для плавності */
+  transition: opacity 1s ease; /* Для плавності */
   opacity: 1; /* Тінь видима */
 }
 .shadow.hidden {

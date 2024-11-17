@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./Shadow.module.css";
 
-const Shadow = () => {
-  return <div className={s.shadow}></div>;
+const Shadow = ({ hidden }) => {
+  return <div className={`${s.shadow} ${hidden ? s.hidden : ""}`}></div>;
 };
 
 export default Shadow;

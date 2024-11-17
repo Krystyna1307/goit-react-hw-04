@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./SearchBar.module.css";
+import toast from "react-hot-toast";
 
 const SearchBar = ({ onSubmit, onTyping }) => {
   const [input, setInput] = useState("");
@@ -7,6 +8,7 @@ const SearchBar = ({ onSubmit, onTyping }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!input.trim()) {
+      toast.error("Please enter test");
       return;
     }
     onSubmit(input);
