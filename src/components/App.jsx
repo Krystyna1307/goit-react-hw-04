@@ -20,6 +20,8 @@ const App = () => {
   const [showModal, setShowModal] = useState(false); //модальне вікно
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const [isTyping, setIsTyping] = useState(false); // Стежимо, чи користувач почав вводити текст
+
   useEffect(() => {
     if (!query) return;
     const getData = async () => {
@@ -60,9 +62,15 @@ const App = () => {
     setShowModal(false); // Закриваємо модальне вікно
   };
 
+  const handleTyping = (typingStatus) => {
+    setIsTyping(typingStatus);
+  };
+
   return (
     <div>
-      <SearchBar onSubmit={handleChangeQuery} />
+      <SearchBar onSubmit={handleChangeQuery} onTyping={handleTyping} />
+      {!isTyping && <Shadow />}
+
       {isError && <ErrorMessage />}
       <ImageGallery images={images} onClick={openModal} />
       {isLoading && <Loader />}

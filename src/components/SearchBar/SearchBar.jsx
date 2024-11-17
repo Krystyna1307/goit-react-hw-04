@@ -1,7 +1,7 @@
 import { useState } from "react";
 import s from "./SearchBar.module.css";
 
-const SearchBar = ({ onSubmit }) => {
+const SearchBar = ({ onSubmit, onTyping }) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
@@ -11,6 +11,15 @@ const SearchBar = ({ onSubmit }) => {
     }
     onSubmit(input);
     setInput("");
+  };
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    if (e.target.value.trim().length > 0) {
+      onTyping(true);
+    } else {
+      onTyping(false);
+    }
   };
 
   return (
@@ -23,7 +32,7 @@ const SearchBar = ({ onSubmit }) => {
           <input
             type="text"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={handleInputChange}
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
@@ -31,7 +40,6 @@ const SearchBar = ({ onSubmit }) => {
           />
         </form>
       </header>
-      <div className={s.shadow}></div>
     </div>
   );
 };

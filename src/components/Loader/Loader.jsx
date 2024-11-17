@@ -1,9 +1,10 @@
 import React from "react";
 import { ThreeDots } from "react-loader-spinner";
+import s from "./Loader.module.css";
 
 const Loader = () => {
   return (
-    <div>
+    <div className={s.loader}>
       <ThreeDots
         visible={true}
         height="120"
